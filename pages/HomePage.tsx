@@ -30,7 +30,7 @@ const restaurantSchema = {
           required: ['id', 'name', 'price'],
         },
       },
-      imageUrl: { type: Type.STRING, description: 'A dynamically generated image URL from Unsplash Source (e.g., "https://source.unsplash.com/800x600/?thai,food").' },
+      imageUrl: { type: Type.STRING, description: 'A highly relevant image URL from Unsplash Source showing specific food from the cuisine, e.g., "https://source.unsplash.com/800x600/?pizza,pasta".' },
       cuisine: { type: Type.STRING, description: 'Type of cuisine (e.g., Thai, Italian, Japanese)' },
       rating: { type: Type.NUMBER, description: 'Customer rating from 1 to 5' },
       address: { type: Type.STRING, description: 'A plausible fictional street address in Bangkok' },
@@ -63,7 +63,7 @@ export default function HomePage({ searchQuery }: HomePageProps) {
     try {
       const response = await ai.models.generateContent({
           model: 'gemini-2.5-flash',
-          contents: 'Generate a list of 6 diverse, fictional restaurants in Bangkok, Thailand. For each restaurant, create an appealing image URL using the Unsplash Source API format: "https://source.unsplash.com/800x600/?<query>", where <query> is a comma-separated list of relevant keywords for the restaurant\'s cuisine (e.g., "thai,food,curry"). Ensure a variety of cuisines like Thai, Japanese, Italian, and Mexican. Include a unique menu with 3-4 items for each. Provide realistic details like rating, a fictional but plausible address in Bangkok, and typical opening hours.',
+          contents: 'Generate a list of 6 diverse, fictional restaurants in Bangkok, Thailand. It is crucial that for each restaurant, the imageUrl is a highly specific and appealing Unsplash Source API URL in the format: "https://source.unsplash.com/800x600/?<query>". The <query> MUST consist of specific, popular food items from that restaurant\'s cuisine. For example: for Italian, the query must be "pizza,pasta". For Japanese, use "sushi,ramen". For Thai, use "pad-thai,green-curry". This is not a suggestion; it is a requirement to ensure the image is a high-quality, relevant photo of the food. Ensure a variety of cuisines like Thai, Japanese, Italian, and Mexican. Include a unique menu with 3-4 items for each. Provide realistic details like rating, a fictional but plausible address in Bangkok, and typical opening hours.',
           config: {
               responseMimeType: "application/json",
               responseSchema: restaurantSchema,

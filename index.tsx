@@ -7,9 +7,10 @@ import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import RecommendedPage from './pages/RecommendedPage';
+import AdminPage from './pages/AdminPage'; // Import the new AdminPage
 import { useThemeStore } from './store/themeStore';
 
-type Page = 'home' | 'recommended';
+type Page = 'home' | 'recommended' | 'admin'; // Add 'admin' page type
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -22,6 +23,8 @@ function App() {
         return <HomePage searchQuery={searchQuery} />;
       case 'recommended':
         return <RecommendedPage searchQuery={searchQuery} />;
+      case 'admin':
+        return <AdminPage />; // Render AdminPage
       default:
         return <HomePage searchQuery={searchQuery} />;
     }

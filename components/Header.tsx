@@ -3,7 +3,7 @@ import { useCart } from '../hooks/useCart';
 import Cart from './Cart';
 import { useThemeStore } from '../store/themeStore';
 
-type Page = 'home' | 'recommended';
+type Page = 'home' | 'recommended' | 'admin';
 
 interface HeaderProps {
   searchQuery: string;
@@ -42,6 +42,7 @@ export default function Header({ searchQuery, onSearch, currentPage, onNavigate 
             <nav className="hidden md:flex items-center gap-6">
                 <button onClick={() => onNavigate('home')} className={navLinkClasses('home')}>Home</button>
                 <button onClick={() => onNavigate('recommended')} className={navLinkClasses('recommended')}>Recommended</button>
+                <button onClick={() => onNavigate('admin')} className={navLinkClasses('admin')}>Admin</button>
             </nav>
           </div>
 
