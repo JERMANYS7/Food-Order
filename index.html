@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Order</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script>
+      // Prevents Flash of Unstyled Content (FOUC) during load
+      (function() {
+        try {
+          const storedState = JSON.parse(localStorage.getItem('theme-storage'));
+          const theme = storedState?.state?.theme;
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          console.error("Could not apply theme from localStorage", e);
+        }
+      })();
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-900">
+    <script type="importmap">
+    {
+        "imports": {
+            "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+            "react": "https://esm.sh/react@^19.0.0",
+            "react/": "https://esm.sh/react@^19.0.0/",
+            "react-dom/": "https://esm.sh/react-dom@^19.0.0/",
+            "zustand": "https://esm.sh/zustand@^4.5.2",
+            "zustand/": "https://esm.sh/zustand@^4.5.2/"
+        }
+    }
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+</body>
+</html>
